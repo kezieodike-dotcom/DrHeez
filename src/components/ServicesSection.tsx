@@ -70,7 +70,7 @@ export default function ServicesSection({ onServiceSelectContact, selectedServic
     },
     {
       title: "Affordable Solutions",
-      description: "Cost-minimization systems deliver industrial solutions at competitive, accessible pricing rates.",
+      description: "Practical delivery systems keep industrial support clear, structured, and easy to coordinate.",
       icon: Award,
       color: "text-purple-600 bg-purple-50"
     }
@@ -120,6 +120,16 @@ export default function ServicesSection({ onServiceSelectContact, selectedServic
                   {service.title}
                 </h3>
 
+                {service.image && (
+                  <div className="mb-5 aspect-[16/10] overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                    <img
+                      src={service.image}
+                      alt={service.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+
                 {/* Description */}
                 <p className="font-sans text-sm text-gray-600 leading-relaxed mb-6">
                   {service.description}
@@ -152,37 +162,37 @@ export default function ServicesSection({ onServiceSelectContact, selectedServic
         </div>
 
         {/* Why Our Services Stand Out Section */}
-        <div className="bg-brand-light border border-gray-200/50 rounded-3xl p-8 lg:p-12 mb-10">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div className="bg-brand-light border border-gray-200/50 rounded-2xl md:rounded-3xl p-5 sm:p-6 lg:p-12 mb-10">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
             
             {/* Visual Call-out panel - Left */}
-            <div className="lg:col-span-4 space-y-4">
+            <div className="lg:col-span-4 space-y-3 sm:space-y-4">
               <span className="font-display font-medium text-xs text-brand-green uppercase tracking-widest block">
                 Enterprise Standards
               </span>
-              <h2 className="font-display font-bold text-3xl text-brand-dark leading-tight">
+              <h2 className="font-display font-bold text-2xl sm:text-3xl text-brand-dark leading-tight">
                 Why Our Services Stand Out
               </h2>
               <div className="h-1 w-16 bg-brand-gold rounded-full" />
-              <p className="font-sans text-sm text-gray-500 leading-relaxed">
+              <p className="hidden sm:block font-sans text-sm text-gray-500 leading-relaxed">
                 By integrating multidisciplinary divisions, Dr.Heez delivers coordinated frameworks representing excellence under a secure, single-brand audit pathway.
               </p>
             </div>
 
             {/* Standout criteria grid - Right */}
-            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div className="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-6">
               {standOutPoints.map((pt, index) => {
                 const PtIcon = pt.icon;
                 return (
-                  <div key={index} className="bg-white p-5 rounded-xl border border-gray-100 flex items-start gap-4">
-                    <div className={`p-2.5 rounded-lg ${pt.color} flex-shrink-0`}>
-                      <PtIcon className="h-5 w-5" />
+                  <div key={index} className="bg-white p-3.5 sm:p-5 rounded-xl border border-gray-100 flex items-center sm:items-start gap-3 sm:gap-4">
+                    <div className={`p-2 sm:p-2.5 rounded-lg ${pt.color} flex-shrink-0`}>
+                      <PtIcon className="h-4.5 w-4.5 sm:h-5 sm:w-5" />
                     </div>
-                    <div className="space-y-1">
+                    <div className="space-y-0.5 sm:space-y-1">
                       <h4 className="font-display font-semibold text-sm text-brand-dark">
                         {pt.title}
                       </h4>
-                      <p className="font-sans text-xs text-gray-500 leading-relaxed">
+                      <p className="hidden sm:block font-sans text-xs text-gray-500 leading-relaxed">
                         {pt.description}
                       </p>
                     </div>

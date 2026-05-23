@@ -1,5 +1,5 @@
 import { useState, useTransition } from 'react';
-import { Product, CartItem } from './types';
+import { Product } from './types';
 import { PHONE_WHATSAPP } from './data';
 
 // Component imports
@@ -12,62 +12,25 @@ import AboutSection from './components/AboutSection';
 import StoreSection from './components/StoreSection';
 import ServicesSection from './components/ServicesSection';
 import ContactSection from './components/ContactSection';
-import CartDrawer from './components/CartDrawer';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState<string>('home');
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
   const [pending, startTransition] = useTransition();
 
   // Navigation state overlays
   const [storeCategoryFilter, setStoreCategoryFilter] = useState<'wellness' | 'phones' | 'agro' | 'all'>('all');
   const [contactSubjectPreset, setContactSubjectPreset] = useState<string>('');
 
-  // 1. ADD TO CART FLOW
-  const handleAddToCart = (product: Product, quantity: number) => {
-    setCartItems((prevItems) => {
-      const existing = prevItems.find((item) => item.product.id === product.id);
-      if (existing) {
-        return prevItems.map((item) =>
-          item.product.id === product.id
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        );
-      }
-      return [...prevItems, { product, quantity }];
-    });
-    // Open cart drawer immediately to provide clear feedback
-    setIsCartOpen(true);
-  };
-
-  // 2. WHATSAPP DIRECT ITEM ORDER FLOW
+  // WhatsApp direct item order flow
   const handleInstantBuyWhatsApp = (product: Product, quantity: number) => {
-    const textStr = `Hello Dr.Heez,\n\nI want to make an instant order for:\n• ${quantity}x ${product.name} (₦${product.priceNGN.toLocaleString()} / $${product.priceUSD} each)\n\nPlease confirm product availability and shipment timelines!`;
+    const textStr = `Hello Dr.Heez,\n\nI want to make an instant order for:\n• ${quantity}x ${product.name}\n\nPlease confirm product availability and shipment timelines!`;
     const encoded = encodeURIComponent(textStr);
     window.open(`https://wa.me/${PHONE_WHATSAPP}?text=${encoded}`, '_blank');
   };
 
-  // 3. CART UPDATE OPERATIONS
-  const handleUpdateQty = (productId: string, qty: number) => {
-    setCartItems((prevItems) =>
-      prevItems.map((item) =>
-        item.product.id === productId ? { ...item, quantity: qty } : item
-      )
-    );
-  };
-
-  const handleRemoveItem = (productId: string) => {
-    setCartItems((prevItems) => prevItems.filter((item) => item.product.id !== productId));
-  };
-
-  const handleClearCart = () => {
-    setCartItems([]);
-  };
-
-  // 4. MULTI-DIRECTION LINK TRIGGERS
+  // Multi-direction link triggers
   const handleSelectStoreCategory = (cat: 'wellness' | 'phones' | 'agro') => {
     startTransition(() => {
       setStoreCategoryFilter(cat);
@@ -97,9 +60,6 @@ export default function App() {
     window.scrollTo(0, 0);
   };
 
-  // Compute standard dynamic cart count
-  const cartCount = cartItems.reduce((acc, item) => acc + item.quantity, 0);
-
   return (
     <div className="min-h-screen flex flex-col justify-between bg-white text-brand-dark antialiased select-none font-sans">
       
@@ -114,8 +74,6 @@ export default function App() {
             if (tab === 'contact') setContactSubjectPreset('');
           });
         }}
-        cartCount={cartCount}
-        onCartClick={() => setIsCartOpen(true)}
       />
 
       {/* Primary Dynamic Main Body Router */}
@@ -143,7 +101,6 @@ export default function App() {
 
             {/* 3. Featured Products */}
             <FeaturedProduct
-              onAddToCart={handleAddToCart}
               onInstantBuyWhatsApp={handleInstantBuyWhatsApp}
             />
 
@@ -171,7 +128,6 @@ export default function App() {
         {activeTab === 'store' && (
           <div className="animate-fade-in">
             <StoreSection
-              onAddToCart={handleAddToCart}
               onInstantBuyWhatsApp={handleInstantBuyWhatsApp}
               preSelectedCategory={storeCategoryFilter}
             />
@@ -197,16 +153,6 @@ export default function App() {
         )}
       </main>
 
-      {/* Slide-out cart system overlay */}
-      <CartDrawer
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        cartItems={cartItems}
-        onUpdateQty={handleUpdateQty}
-        onRemoveItem={handleRemoveItem}
-        onClearCart={handleClearCart}
-      />
-
       {/* Global Brand Footer widget */}
       <Footer
         activeTab={activeTab}
@@ -215,7 +161,6 @@ export default function App() {
             setActiveTab(tab);
           });
         }}
-        onOpenCart={() => setIsCartOpen(true)}
       />
 
       {/* Persistent floating WhatsApp contact button */}

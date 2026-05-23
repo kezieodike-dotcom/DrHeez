@@ -22,6 +22,7 @@ export default function Categories({ onSelectStoreCategory, onSelectService }: C
       id: "healthcare",
       title: "Health Care Products",
       description: "Natural wellness, cellular supplements and herbal support designed to promote healthy living and vitality.",
+      image: "/images/mega4.jpg",
       icon: Heart,
       action: () => onSelectStoreCategory('wellness'),
       btnText: "Shop Wellness",
@@ -32,6 +33,7 @@ export default function Categories({ onSelectStoreCategory, onSelectService }: C
       id: "oil-gas",
       title: "Oil & Gas Support",
       description: "Reliable industrial sourcing, petroleum marketing, logistical allocations, and fuel contract frameworks.",
+      image: "/images/oil-gas.jpg",
       icon: Flame,
       action: () => onSelectService('oil-gas'),
       btnText: "Learn More",
@@ -138,6 +140,16 @@ export default function Categories({ onSelectStoreCategory, onSelectService }: C
                   <h3 className="font-display font-bold text-lg text-brand-dark mt-5 mb-2 group-hover:text-brand-green transition-colors">
                     {sector.title}
                   </h3>
+
+                  {'image' in sector && sector.image && (
+                    <div className="mt-4 mb-4 aspect-[4/3] overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                      <img
+                        src={sector.image}
+                        alt={sector.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    </div>
+                  )}
 
                   {/* Description text */}
                   <p className="font-sans text-xs text-gray-500 leading-relaxed mb-4">

@@ -8,7 +8,7 @@ export const PRODUCTS: Product[] = [
     id: 'mega-4-stemcells',
     name: 'Mega 4 Stemcells',
     category: 'wellness',
-    categoryLabel: 'Wellness Product',
+    categoryLabel: 'Health Product',
     description: 'A premium natural wellness support supplement designed to support healthy living, cellular rejuvenation, body balance, and overall wellness.',
     priceNGN: 45000,
     priceUSD: 60,
@@ -205,6 +205,7 @@ export const SERVICES: ServiceItem[] = [
     title: 'Oil & Gas Services',
     description: 'Comprehensive midstream and downstream industrial support, petroleum product sourcing directories, supply-chain logistics, and commercial client allocations.',
     iconName: 'Flame',
+    image: '/images/oil-gas.jpg',
     benefits: [
       'Bulk product sourcing alliances',
       'Logistical fleet allocation networks',

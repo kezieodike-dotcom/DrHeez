@@ -1,16 +1,14 @@
 import { useState } from 'react';
-import { Menu, X, ShoppingCart, MessageSquare } from 'lucide-react';
+import { Menu, X, MessageSquare } from 'lucide-react';
 import { PHONE_WHATSAPP } from '../data';
 
 
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  cartCount: number;
-  onCartClick: () => void;
 }
 
-export default function Header({ activeTab, setActiveTab, cartCount, onCartClick }: HeaderProps) {
+export default function Header({ activeTab, setActiveTab }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const menuItems = [
@@ -36,6 +34,9 @@ export default function Header({ activeTab, setActiveTab, cartCount, onCartClick
               alt="Dr.Heez Global Ventures Logo" 
               className="h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-105"
             />
+            <span className="font-display font-black text-xl sm:text-2xl text-brand-green tracking-tight leading-none">
+              DrHeez
+            </span>
           </div>
 
           {/* Desktop Navigation */}
@@ -64,21 +65,6 @@ export default function Header({ activeTab, setActiveTab, cartCount, onCartClick
 
           {/* Action Buttons */}
           <div className="flex items-center gap-4">
-            {/* Cart Button */}
-            <button
-              onClick={onCartClick}
-              className="relative p-2.5 text-gray-700 hover:text-brand-green transition-colors hover:bg-gray-50 rounded-full cursor-pointer border border-gray-100"
-              id="cart-trigger"
-              aria-label="View shopping cart"
-            >
-              <ShoppingCart className="h-5.5 w-5.5" />
-              {cartCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-gold text-brand-green font-bold text-[10px] h-5 w-5 rounded-full flex items-center justify-center border border-white shadow-sm">
-                  {cartCount}
-                </span>
-              )}
-            </button>
-
             {/* Quick WhatsApp Link header */}
             <a
               href={`https://wa.me/${PHONE_WHATSAPP}`}

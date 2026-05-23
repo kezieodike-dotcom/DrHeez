@@ -1,13 +1,12 @@
-import { ShieldCheck, MessageSquare, ShoppingCart, Heart, Activity } from 'lucide-react';
+import { ShieldCheck, MessageSquare, Heart, Activity } from 'lucide-react';
 import { Product } from '../types';
 import { PRODUCTS, PHONE_WHATSAPP } from '../data';
 
 interface FeaturedProductProps {
-  onAddToCart: (product: Product, quantity: number) => void;
   onInstantBuyWhatsApp: (product: Product, quantity: number) => void;
 }
 
-export default function FeaturedProduct({ onAddToCart, onInstantBuyWhatsApp }: FeaturedProductProps) {
+export default function FeaturedProduct({ onInstantBuyWhatsApp }: FeaturedProductProps) {
   // Extract Mega 4 stemcells
   const megaProduct = PRODUCTS.find(p => p.id === 'mega-4-stemcells') || PRODUCTS[0];
 
@@ -83,21 +82,21 @@ export default function FeaturedProduct({ onAddToCart, onInstantBuyWhatsApp }: F
               <p>This product is not intended to diagnose, treat, cure, or prevent any disease. Customers are advised to consult healthcare professionals for medical concerns.</p>
             </div>
 
-            {/* Price tag & Call to actions */}
+            {/* Call to actions */}
             <div className="pt-6 border-t border-gray-200/60 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
               <div>
-                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Authorized Vendor Price</span>
-                <span className="font-display font-extrabold text-2xl text-[#0E5A3C]">₦{megaProduct.priceNGN.toLocaleString()} <span className="text-gray-400 text-sm font-normal">/ ${megaProduct.priceUSD} USD equivalent</span></span>
+                <span className="text-[10px] text-gray-400 font-bold uppercase tracking-wider block">Authorized Vendor Product</span>
+                <span className="font-display font-extrabold text-2xl text-[#0E5A3C]">Mega 4 Stemcells</span>
               </div>
 
               {/* Action buttons from PRD */}
               <div className="flex gap-3">
                 <button
-                  onClick={() => onAddToCart(megaProduct, 1)}
+                  onClick={() => onInstantBuyWhatsApp(megaProduct, 1)}
                   className="bg-brand-green hover:bg-brand-green-hover text-white font-extrabold text-xs py-3.5 px-6 rounded-xl flex items-center gap-2 shadow cursor-pointer transition-all"
                   id="featured-buy-now"
                 >
-                  <ShoppingCart className="h-4.5 w-4.5 text-brand-gold" />
+                  <MessageSquare className="h-4.5 w-4.5 text-brand-gold" />
                   <span>Buy Now</span>
                 </button>
                 

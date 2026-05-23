@@ -14,16 +14,12 @@ export interface Product {
   scientificDisclaimer?: boolean;
 }
 
-export interface CartItem {
-  product: Product;
-  quantity: number;
-}
-
 export interface ServiceItem {
   id: string;
   title: string;
   description: string;
   iconName: string;
+  image?: string;
   benefits: string[];
 }
 

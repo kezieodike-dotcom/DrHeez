@@ -1,5 +1,6 @@
-import { ArrowRight, ThumbsUp, Star, Users, MessageSquare, Briefcase, Sparkle } from 'lucide-react';
+import { ArrowRight, MessageSquare } from 'lucide-react';
 import { TESTIMONIALS } from '../data';
+import { TestimonialsColumn, TestimonialsColumnItem } from './ui/testimonials-columns-1';
 
 interface HomePreviewsProps {
   onNavTab: (tabId: string) => void;
@@ -7,6 +8,51 @@ interface HomePreviewsProps {
 }
 
 export default function HomePreviews({ onNavTab, onSelectService }: HomePreviewsProps) {
+  const testimonialImages = [
+    'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=120',
+    'https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?auto=format&fit=crop&q=80&w=120',
+  ];
+
+  const customerVoices: TestimonialsColumnItem[] = TESTIMONIALS.flatMap((test, index) => {
+    const base = {
+      text: test.text,
+      image: testimonialImages[index % testimonialImages.length],
+      name: test.author,
+      role: test.role,
+    };
+
+    if (index === TESTIMONIALS.length - 1) {
+      return [
+        base,
+        {
+          text: 'Their sourcing team handled our wellness and supply requests with clear communication, fast confirmation, and careful product guidance.',
+          image: testimonialImages[(index + 1) % testimonialImages.length],
+          name: 'Hadiza Bello',
+          role: 'Procurement Lead, Mavora Trade House',
+        },
+        {
+          text: 'We came for product availability and stayed for the follow-through. The team kept each step practical, transparent, and easy to track.',
+          image: testimonialImages[(index + 2) % testimonialImages.length],
+          name: 'Tunde Akinwale',
+          role: 'Operations Partner, Ardent Fieldworks',
+        },
+      ];
+    }
+
+    return [base];
+  });
+
+  const firstColumn = customerVoices.slice(0, 3);
+  const secondColumn = customerVoices.slice(3, 6);
+  const thirdColumn = customerVoices.slice(6, 9);
+
   return (
     <div id="home-additional-previews">
       
@@ -124,59 +170,28 @@ export default function HomePreviews({ onNavTab, onSelectService }: HomePreviews
       </section>
 
       {/* 6. TESTIMONIALS SECTION */}
-      <section className="py-20 bg-brand-light px-4 sm:px-6 lg:px-8 border-b border-gray-100" id="home-testimonials">
+      <section className="bg-brand-light py-20 px-4 sm:px-6 lg:px-8 border-b border-gray-100 relative overflow-hidden" id="home-testimonials">
         <div className="max-w-7xl mx-auto">
-          
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <span className="font-display font-black text-xs text-brand-gold uppercase tracking-widest block font-bold">
-              User Endorsements
-            </span>
-            <h2 className="font-display font-bold text-3xl text-brand-dark">
-              What Our Clients Say
+          <div className="flex flex-col items-center justify-center max-w-[540px] mx-auto text-center">
+            <div className="flex justify-center">
+              <div className="border border-brand-green/10 bg-white py-1 px-4 rounded-lg text-xs font-black text-brand-gold uppercase tracking-widest">
+                Testimonials
+              </div>
+            </div>
+
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight mt-5 text-brand-dark">
+              What users say
             </h2>
-            <div className="h-1.5 w-16 bg-brand-green mx-auto rounded-full" />
-            <p className="text-xs text-gray-500">
-              Verified outcomes from individual healthcare supplement consumers and heavy corporate clients.
+            <p className="text-center mt-5 text-sm text-gray-500 leading-relaxed">
+              See what our customers have to say about Dr.Heez products, sourcing support, and professional services.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {TESTIMONIALS.map((test) => (
-              <div 
-                key={test.id}
-                className="bg-white border border-gray-100 rounded-2xl p-6 shadow-sm flex flex-col justify-between hover:shadow-md transition-all"
-                id={`testimonial-card-${test.id}`}
-              >
-                <div>
-                  {/* Rating Stars */}
-                  <div className="flex text-amber-400 gap-0.5 mb-4">
-                    {[...Array(test.rating)].map((_, idx) => (
-                      <Star key={idx} className="h-4.5 w-4.5 fill-amber-400 stroke-amber-400" />
-                    ))}
-                  </div>
-                  {/* Testimonial Message */}
-                  <p className="font-sans text-xs text-gray-600 leading-relaxed italic mb-6">
-                    "{test.text}"
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-gray-50 flex justify-between items-center text-xs">
-                  <div>
-                    <span className="font-display font-bold text-brand-dark block">
-                      {test.author}
-                    </span>
-                    <span className="text-[10px] text-gray-400 block font-medium">
-                      {test.role}
-                    </span>
-                  </div>
-                  <span className="text-[10px] text-brand-green font-mono font-bold">
-                    {test.date}
-                  </span>
-                </div>
-              </div>
-            ))}
+          <div className="flex justify-center gap-6 mt-10 [mask-image:linear-gradient(to_bottom,transparent,black_18%,black_82%,transparent)] max-h-[740px] overflow-hidden">
+            <TestimonialsColumn testimonials={firstColumn} duration={15} />
+            <TestimonialsColumn testimonials={secondColumn} className="hidden md:block" duration={19} />
+            <TestimonialsColumn testimonials={thirdColumn} className="hidden lg:block" duration={17} />
           </div>
-
         </div>
       </section>
 

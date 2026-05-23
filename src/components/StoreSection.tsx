@@ -1,15 +1,14 @@
 import { useState, useMemo } from 'react';
-import { Search, ShoppingCart, MessageSquare, Star, SlidersHorizontal, Info, Check, Eye, X } from 'lucide-react';
+import { Search, MessageSquare, Star, Info, Check, Eye, X } from 'lucide-react';
 import { Product } from '../types';
-import { PRODUCTS, PHONE_WHATSAPP } from '../data';
+import { PRODUCTS } from '../data';
 
 interface StoreSectionProps {
-  onAddToCart: (product: Product, quantity: number) => void;
   onInstantBuyWhatsApp: (product: Product, quantity: number) => void;
   preSelectedCategory?: 'wellness' | 'phones' | 'agro' | 'all';
 }
 
-export default function StoreSection({ onAddToCart, onInstantBuyWhatsApp, preSelectedCategory = 'all' }: StoreSectionProps) {
+export default function StoreSection({ onInstantBuyWhatsApp, preSelectedCategory = 'all' }: StoreSectionProps) {
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'wellness' | 'phones' | 'agro'>(preSelectedCategory);
   
@@ -44,15 +43,34 @@ export default function StoreSection({ onAddToCart, onInstantBuyWhatsApp, preSel
         {/* Page title and banner */}
         <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
           <span className="font-display font-bold text-xs text-brand-gold uppercase tracking-widest block">
-            Dr.Heez Online Mart
+            Dr.Heez Business Portfolio
           </span>
           <h1 className="font-display font-bold text-4xl sm:text-5xl text-brand-dark">
-            Our Online Store
+            Products & Services
           </h1>
           <div className="h-1.5 w-24 bg-brand-green mx-auto rounded-full" />
           <p className="font-sans text-base text-gray-500 leading-relaxed">
-            Acquire premium organic supplements, genuine phone accessories, and certified agro-allied supply products from a verified supplier.
+            Health care products, Oil & Gas, Phone and accessories, Financial Engineering, Constructions, Agro and allied products, Consultant, and General Commerce.
           </p>
+          <div className="flex flex-wrap justify-center gap-2 pt-2">
+            {[
+              'Health care products',
+              'Oil & Gas',
+              'Phone and accessories',
+              'Financial Engineering',
+              'Constructions',
+              'Agro and allied products',
+              'Consultant',
+              'General Commerce',
+            ].map((item) => (
+              <span
+                key={item}
+                className="rounded-full border border-brand-green/10 bg-white px-3.5 py-1.5 text-[11px] font-bold text-brand-green shadow-sm"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Faceted search & filter ribbon */}
@@ -62,7 +80,7 @@ export default function StoreSection({ onAddToCart, onInstantBuyWhatsApp, preSel
           <div className="flex flex-wrap gap-2 w-full md:w-auto">
             {(['all', 'wellness', 'phones', 'agro'] as const).map((cat) => {
               const label = cat === 'all' ? 'All Products' : 
-                            cat === 'wellness' ? 'Wellness Products' : 
+                            cat === 'wellness' ? 'Health Products' : 
                             cat === 'phones' ? 'Phones & Accessories' : 'Agro Products';
               return (
                 <button
@@ -176,38 +194,16 @@ export default function StoreSection({ onAddToCart, onInstantBuyWhatsApp, preSel
                     </p>
                   </div>
 
-                  {/* Pricing and cart hooks */}
+                  {/* Product action hooks */}
                   <div>
-                    <div className="py-2.5 border-t border-gray-50 flex items-baseline justify-between mb-4">
-                      <div>
-                        <span className="text-xs text-gray-400 block font-medium">Retail Price</span>
-                        <span className="font-display font-extrabold text-[#0E5A3C] text-lg">
-                          ₦{prod.priceNGN.toLocaleString()}
-                        </span>
-                      </div>
-                      <span className="text-gray-400 font-mono text-xs font-semibold">
-                        ${prod.priceUSD} USD
-                      </span>
-                    </div>
-
-                    {/* Dual Buttons */}
-                    <div className="grid grid-cols-2 gap-2">
-                      <button
-                        onClick={() => onAddToCart(prod, 1)}
-                        className="bg-brand-green hover:bg-brand-green-hover text-white font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1 transition-all shadow-sm shadow-brand-green/5 cursor-pointer"
-                        id={`btn-add-cart-${prod.id}`}
-                      >
-                        <ShoppingCart className="h-3.5 w-3.5" />
-                        <span>Add To Cart</span>
-                      </button>
-                      
+                    <div>
                       <button
                         onClick={() => onInstantBuyWhatsApp(prod, 1)}
-                        className="bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1 transition-all shadow-sm cursor-pointer"
+                        className="w-full bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-bold py-2.5 rounded-xl text-xs flex items-center justify-center gap-1 transition-all shadow-sm cursor-pointer"
                         id={`btn-wa-order-${prod.id}`}
                       >
                         <MessageSquare className="h-3.5 w-3.5" />
-                        <span>Buy Direct</span>
+                        <span>Order on WhatsApp</span>
                       </button>
                     </div>
                   </div>
@@ -304,14 +300,9 @@ export default function StoreSection({ onAddToCart, onInstantBuyWhatsApp, preSel
                 {/* Buying section footer */}
                 <div className="pt-6 border-t border-gray-100 mt-6 space-y-4">
                   <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] text-gray-400 uppercase tracking-widest font-bold block">Current Price</span>
-                      <span className="font-display font-extrabold text-2xl text-brand-green block">
-                        ₦{selectedProduct.priceNGN.toLocaleString()}
-                      </span>
-                      <span className="text-xs text-gray-400">~ ${selectedProduct.priceUSD} USD equivalent</span>
-                    </div>
-
+                    <span className="text-[10px] text-gray-400 uppercase tracking-widest font-bold block">
+                      Select Quantity
+                    </span>
                     {/* Quantity selectors */}
                     <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden bg-white shadow-xs">
                       <button
@@ -336,21 +327,10 @@ export default function StoreSection({ onAddToCart, onInstantBuyWhatsApp, preSel
                   <div className="grid grid-cols-2 gap-3 pt-2">
                     <button
                       onClick={() => {
-                        onAddToCart(selectedProduct, dialogQuantity);
-                        handleCloseProductDetails();
-                      }}
-                      className="bg-brand-green hover:bg-brand-green-hover text-white font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer shadow-md"
-                    >
-                      <ShoppingCart className="h-4 w-4 text-brand-gold" />
-                      <span>Add to Cart ({dialogQuantity})</span>
-                    </button>
-
-                    <button
-                      onClick={() => {
                         onInstantBuyWhatsApp(selectedProduct, dialogQuantity);
                         handleCloseProductDetails();
                       }}
-                      className="bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer shadow"
+                      className="col-span-2 bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-bold py-3 px-4 rounded-xl text-xs flex items-center justify-center gap-2 cursor-pointer shadow"
                     >
                       <MessageSquare className="h-4 w-4" />
                       <span>Buy on WhatsApp</span>

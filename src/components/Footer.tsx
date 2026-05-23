@@ -5,10 +5,9 @@ import { PHONE_WHATSAPP } from '../data';
 interface FooterProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
-  onOpenCart: () => void;
 }
 
-export default function Footer({ activeTab, setActiveTab, onOpenCart }: FooterProps) {
+export default function Footer({ activeTab, setActiveTab }: FooterProps) {
   
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -73,9 +72,6 @@ export default function Footer({ activeTab, setActiveTab, onOpenCart }: FooterPr
               </button>
               <button onClick={() => handleTabSelect('contact')} className="hover:text-brand-gold text-left cursor-pointer transition-colors">
                 Contact Desk
-              </button>
-              <button onClick={onOpenCart} className="hover:text-brand-gold text-left cursor-pointer transition-colors">
-                Shopping Cart Ledger
               </button>
             </div>
           </div>
