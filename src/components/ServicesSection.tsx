@@ -76,6 +76,69 @@ export default function ServicesSection({ onServiceSelectContact, selectedServic
     }
   ];
 
+  const oilGasPriceList = [
+    {
+      product: "Urea",
+      grade: "Prilled",
+      quantity: "12.500 MT - 500.000 MT per month",
+      price: "$340 Gross / $330 Net per MT"
+    },
+    {
+      product: "Urea",
+      grade: "Granular",
+      quantity: "12.500 MT - 500.000 MT per month",
+      price: "$330 Gross / $320 Net per MT"
+    },
+    {
+      product: "Di-Ammonium Phosphate (DAP)",
+      grade: "All grades",
+      quantity: "12.500 MT - 500.000 MT per month",
+      price: "$390 Gross / $380 Net per MT"
+    },
+    {
+      product: "NPK",
+      grade: "All grades",
+      quantity: "12.500 MT - 500.000 MT per month",
+      price: "$360 Gross / $350 Net per MT"
+    },
+    {
+      product: "Sulphur",
+      grade: "All grades",
+      quantity: "12.500 MT - 500.000 MT per month",
+      price: "$310 Gross / $300 Net per MT"
+    },
+    {
+      product: "Sunflower Oil",
+      grade: "Crude",
+      quantity: "25.000 MT - 500.000 MT per month",
+      price: "$750 Gross / $740 Net per MT"
+    },
+    {
+      product: "Sunflower Oil",
+      grade: "Refined",
+      quantity: "25.000 MT - 500.000 MT per month",
+      price: "$740 Gross / $730 Net per MT"
+    },
+    {
+      product: "Rapeseed Oil",
+      grade: "Crude",
+      quantity: "25.000 MT - 500.000 MT per month",
+      price: "$670 Gross / $660 Net per MT"
+    },
+    {
+      product: "Rapeseed Oil",
+      grade: "Refined",
+      quantity: "25.000 MT - 500.000 MT per month",
+      price: "$660 Gross / $650 Net per MT"
+    },
+    {
+      product: "Rapeseed Oil",
+      grade: "Crude Degummed",
+      quantity: "25.000 MT - 500.000 MT per month",
+      price: "$690 Gross / $680 Net per MT"
+    }
+  ];
+
   return (
     <div className="bg-white py-16 lg:py-24" id="services-page">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -95,7 +158,7 @@ export default function ServicesSection({ onServiceSelectContact, selectedServic
         </div>
 
         {/* Services List Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {SERVICES.map((service) => (
             <div 
               key={service.id}
@@ -160,6 +223,60 @@ export default function ServicesSection({ onServiceSelectContact, selectedServic
             </div>
           ))}
         </div>
+
+        {/* Oil & Gas price list */}
+        <section className="mb-24 rounded-3xl border border-gray-100 bg-brand-light p-5 sm:p-8 lg:p-10" id="oil-gas-price-list">
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-5 mb-8">
+            <div className="space-y-3">
+              <span className="font-display font-bold text-xs text-brand-gold uppercase tracking-widest block">
+                Oil & Gas Product Price List
+              </span>
+              <h2 className="font-display font-bold text-2xl sm:text-3xl text-brand-dark">
+                Monthly Industrial Supply Rates
+              </h2>
+              <p className="font-sans text-sm text-gray-500 leading-relaxed max-w-2xl">
+                Pricing guide for bulk monthly sourcing. Final availability, delivery terms, and documentation are confirmed through the Dr.Heez contact desk.
+              </p>
+            </div>
+            <button
+              onClick={() => onServiceSelectContact("Oil & Gas Product Price List")}
+              className="inline-flex items-center justify-center gap-2 bg-brand-green text-white hover:bg-brand-green-hover font-bold py-3 px-5 rounded-xl transition-all cursor-pointer text-xs"
+            >
+              <span>Request Supply Terms</span>
+              <ArrowRight className="h-4 w-4 text-brand-gold" />
+            </button>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+            {oilGasPriceList.map((item, index) => (
+              <div key={`${item.product}-${item.grade}-${index}`} className="rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div>
+                    <h3 className="font-display font-bold text-base text-brand-dark leading-tight">
+                      {item.product}
+                    </h3>
+                    <p className="text-xs font-bold text-brand-green mt-1 uppercase tracking-wide">
+                      {item.grade}
+                    </p>
+                  </div>
+                  <span className="text-[10px] font-bold text-gray-400">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                </div>
+                <div className="space-y-2 text-xs">
+                  <div className="rounded-xl bg-gray-50 border border-gray-100 p-3">
+                    <span className="block text-gray-400 font-bold uppercase tracking-wider mb-1">Quantity</span>
+                    <span className="text-gray-700 font-semibold">{item.quantity}</span>
+                  </div>
+                  <div className="rounded-xl bg-brand-green/5 border border-brand-green/10 p-3">
+                    <span className="block text-gray-400 font-bold uppercase tracking-wider mb-1">Price</span>
+                    <span className="text-brand-green font-extrabold">{item.price}</span>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Why Our Services Stand Out Section */}
         <div className="bg-brand-light border border-gray-200/50 rounded-2xl md:rounded-3xl p-5 sm:p-6 lg:p-12 mb-10">
