@@ -12,7 +12,7 @@ export const PRODUCTS: Product[] = [
     description: 'A premium natural wellness support supplement designed to support healthy living, cellular rejuvenation, body balance, and overall wellness.',
     priceNGN: 45000,
     priceUSD: 60,
-    image: '/images/mega4-stemcells.png',
+    image: '/images/mega4.jpg',
     isFeatured: true,
     scientificDisclaimer: true,
     benefits: [

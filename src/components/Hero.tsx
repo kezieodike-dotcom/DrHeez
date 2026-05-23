@@ -16,7 +16,7 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
       title: "Health Care Products",
       description: "Premium natural wellness support supplements designed to support healthy living and cellular rejuvenation.",
       tagline: "Flagship Supplements",
-      image: "/images/mega4-stemcells.png",
+      image: "/images/mega4.jpg",
       icon: Activity,
       cta: "Shop Wellness",
       action: onShopClick
