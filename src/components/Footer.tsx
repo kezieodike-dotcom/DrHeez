@@ -1,6 +1,6 @@
 import { Phone, Mail, Clock, MessageSquare, Facebook, Twitter, Instagram, Linkedin, ArrowUp } from 'lucide-react';
 import { PHONE_WHATSAPP } from '../data';
-import BrandLogo from './BrandLogo';
+
 
 interface FooterProps {
   activeTab: string;
@@ -28,7 +28,11 @@ export default function Footer({ activeTab, setActiveTab, onOpenCart }: FooterPr
           
           {/* Brand Presentation column */}
           <div className="space-y-4">
-            <BrandLogo markClassName="h-11 w-11" compact inverted />
+            <img 
+              src="/images/logo.jpg" 
+              alt="Dr.Heez Global Ventures Logo" 
+              className="h-14 w-auto object-contain bg-white p-1 rounded-lg shadow-sm"
+            />
             <p className="font-sans text-xs text-gray-400 leading-relaxed">
               Dr.Heez Global Ventures is a multi-service business brand bringing wellness products, professional consultancy, construction support, agro products, and general commerce solutions under one trusted platform.
             </p>

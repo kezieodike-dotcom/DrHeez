@@ -1,4 +1,4 @@
-import { ArrowRight, ShieldCheck, Activity, BrainCircuit, Play } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Activity, BrainCircuit, MessageSquare } from 'lucide-react';
 
 interface HeroProps {
   onShopClick: () => void;
@@ -7,6 +7,8 @@ interface HeroProps {
 }
 
 export default function Hero({ onShopClick, onServicesClick, onContactClick }: HeroProps) {
+  const whatsAppHref = 'https://wa.me/2348140731811';
+
   return (
     <div className="relative overflow-hidden bg-brand-light py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100" id="hero-section">
       {/* Decorative Background Elements */}
@@ -61,6 +63,19 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
               >
                 <span>Request Consultation</span>
               </button>
+
+              <a
+                href={whatsAppHref}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold py-4 px-6 rounded-full shadow-md transition-all cursor-pointer"
+                id="hero-whatsapp-cta"
+                aria-label="Chat with Dr.Heez on WhatsApp"
+                title="Chat with Dr.Heez on WhatsApp"
+              >
+                <MessageSquare className="h-4.5 w-4.5" />
+                <span>WhatsApp</span>
+              </a>
             </div>
 
             {/* Static Stats / Badges */}

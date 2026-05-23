@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Menu, X, ShoppingCart, MessageSquare } from 'lucide-react';
 import { PHONE_WHATSAPP } from '../data';
-import BrandLogo from './BrandLogo';
+
 
 interface HeaderProps {
   activeTab: string;
@@ -31,7 +31,11 @@ export default function Header({ activeTab, setActiveTab, cartCount, onCartClick
             onClick={() => { setActiveTab('home'); window.scrollTo(0, 0); }}
             id="brand-logo"
           >
-            <BrandLogo markClassName="h-12 w-12 transition-transform group-hover:scale-105" compact />
+            <img 
+              src="/images/logo.jpg" 
+              alt="Dr.Heez Global Ventures Logo" 
+              className="h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </div>
 
           {/* Desktop Navigation */}

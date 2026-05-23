@@ -10,7 +10,7 @@ import {
   Briefcase 
 } from 'lucide-react';
 import { PHONE_WHATSAPP, WHATSAPP_MESSAGE_TEMPLATE } from '../data';
-import BrandLogo from './BrandLogo';
+
 
 interface ContactSectionProps {
   preFilledSubject?: string;
@@ -89,7 +89,7 @@ export default function ContactSection({ preFilledSubject = '' }: ContactSection
                 
                 {/* Business Name */}
                 <div className="flex items-start gap-4">
-                  <BrandLogo markClassName="h-10 w-10" showWordmark={false} />
+                  <img src="/images/logo.jpg" alt="Dr.Heez Logo" className="h-10 w-auto object-contain" />
                   <div>
                     <span className="text-gray-400 text-[10px] block uppercase font-bold tracking-wider">Registered Entity</span>
                     <span className="font-display font-bold text-base text-white">Dr.Heez Global Ventures</span>
