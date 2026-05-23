@@ -212,21 +212,15 @@ export default function HomePreviews({ onNavTab, onSelectService }: HomePreviews
             <p className="text-gray-300 text-sm max-w-xl mx-auto leading-relaxed">
               We provide fast turnaround on herbal supplements, phone gear, and industrial consulting. Request quotes inside minutes.
             </p>
-            <div className="pt-4 flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button
-                onClick={() => onNavTab('contact')}
-                className="bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-extrabold text-xs py-3.5 px-8 rounded-full shadow hover:shadow-lg transition-all cursor-pointer uppercase tracking-wider block w-full sm:w-auto"
-              >
-                Book Consultation Now
-              </button>
+            <div className="pt-4 flex justify-center items-center">
               <button
                 onClick={() => {
                   window.open(`https://wa.me/+2348140731811`, '_blank');
                 }}
-                className="bg-white/10 hover:bg-white/15 text-white font-bold text-xs py-3.5 px-6 rounded-full inline-flex items-center justify-center gap-1.5 transition-all text-center border border-white/10 block w-full sm:w-auto"
+                className="bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-extrabold text-xs py-3.5 px-8 rounded-full shadow hover:shadow-lg transition-all cursor-pointer uppercase tracking-wider inline-flex items-center justify-center gap-2 w-full sm:w-auto"
               >
-                <MessageSquare className="h-4.5 w-4.5 text-brand-gold" />
-                <span>Text Sourcing Manager</span>
+                <MessageSquare className="h-4.5 w-4.5" />
+                <span>Contact Us</span>
               </button>
             </div>
           </div>
