@@ -1,4 +1,5 @@
-import { ArrowRight, ShieldCheck, Activity, BrainCircuit, MessageSquare } from 'lucide-react';
+import { useState, useEffect } from 'react';
+import { ArrowRight, ShieldCheck, Activity, BrainCircuit, MessageSquare, Factory, Smartphone, TrendingUp, HardHat, Wheat, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HeroProps {
   onShopClick: () => void;
@@ -8,22 +9,105 @@ interface HeroProps {
 
 export default function Hero({ onShopClick, onServicesClick, onContactClick }: HeroProps) {
   const whatsAppHref = 'https://wa.me/2348140731811';
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const slides = [
+    {
+      title: "Health Care Products",
+      description: "Premium natural wellness support supplements designed to support healthy living and cellular rejuvenation.",
+      tagline: "Flagship Supplements",
+      image: "/images/mega4-stemcells.png",
+      icon: Activity,
+      cta: "Shop Wellness",
+      action: onShopClick
+    },
+    {
+      title: "Oil & Gas Solutions",
+      description: "Reliable support, logistics, and supply chain management for the oil and gas industry, ensuring operational efficiency.",
+      tagline: "Industry Support",
+      image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=605",
+      icon: Factory,
+      cta: "Explore Solutions",
+      action: onServicesClick
+    },
+    {
+      title: "Phones & Accessories",
+      description: "High-quality communication gadgets and premium mobile accessories for individuals and businesses.",
+      tagline: "Tech Gadgets",
+      image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&q=80&w=605",
+      icon: Smartphone,
+      cta: "View Catalog",
+      action: onShopClick
+    },
+    {
+      title: "Financial Engineering",
+      description: "Strategic financial advisory, structuring, and engineering solutions to maximize your business potential.",
+      tagline: "Corporate Finance",
+      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=605",
+      icon: TrendingUp,
+      cta: "Get Advisory",
+      action: onServicesClick
+    },
+    {
+      title: "Construction Support",
+      description: "Robust logistics, material supply, and strategic support for major construction and infrastructure projects.",
+      tagline: "Infrastructure",
+      image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&q=80&w=605",
+      icon: HardHat,
+      cta: "Build With Us",
+      action: onServicesClick
+    },
+    {
+      title: "Agro & Allied Products",
+      description: "Sustainable agricultural products and allied commerce solutions to support food security and local industries.",
+      tagline: "Agriculture",
+      image: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=605",
+      icon: Wheat,
+      cta: "Explore Agro",
+      action: onShopClick
+    },
+    {
+      title: "Consultancy Services",
+      description: "Expert business planning, management consultancy, and strategic growth guidance for enterprises.",
+      tagline: "Expert Advice",
+      image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=605",
+      icon: BrainCircuit,
+      cta: "Book Session",
+      action: onContactClick
+    },
+    {
+      title: "General Commerce",
+      description: "End-to-end general trading, procurement, and supply chain solutions for diverse consumer needs.",
+      tagline: "Trade & Supply",
+      image: "https://images.unsplash.com/photo-1560179707-f14e90ef3623?auto=format&fit=crop&q=80&w=605",
+      icon: ShoppingCart,
+      cta: "View Store",
+      action: onShopClick
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
+  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
+  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
 
   return (
     <div className="relative overflow-hidden bg-brand-light py-16 lg:py-24 px-4 sm:px-6 lg:px-8 border-b border-gray-100" id="hero-section">
       {/* Decorative Background Elements */}
       <div className="absolute top-0 right-0 -mr-20 -mt-20 w-80 h-80 rounded-full bg-brand-gold/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 rounded-full bg-brand-green/5 blur-3xl pointer-events-none" />
-      
-      {/* Visual background stripe */}
       <div className="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-brand-green/[0.02] to-transparent pointer-events-none" />
 
       <div className="max-w-7xl mx-auto relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Main Hero Copy - Left side */}
-          <div className="lg:col-span-7 space-y-8 text-center lg:text-left">
-            {/* Tag notification */}
+          <div className="lg:col-span-6 space-y-8 text-center lg:text-left">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-green/10 text-brand-green text-xs font-semibold tracking-wider uppercase mx-auto lg:mx-0">
               <ShieldCheck className="h-4 w-4 text-brand-gold" />
               <span>Certified Multi-Sector Enterprise</span>
@@ -37,12 +121,10 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
               Dr.Heez Global Ventures provides quality wellness products, professional consultancy, construction support, agro-allied solutions, financial engineering, oil & gas support, and high-quality phone accessories for individuals and businesses worldwide.
             </p>
 
-            {/* Action buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
               <button
                 onClick={onShopClick}
                 className="inline-flex items-center justify-center gap-2.5 bg-brand-green text-white hover:bg-brand-green-hover font-semibold py-4 px-8 rounded-full shadow-lg hover:shadow-xl hover:shadow-brand-green/10 transition-all cursor-pointer transform hover:-translate-y-0.5"
-                id="hero-shop-cta"
               >
                 <span>Shop Wellness Products</span>
                 <ArrowRight className="h-4 w-4 text-brand-gold" />
@@ -51,17 +133,8 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
               <button
                 onClick={onServicesClick}
                 className="inline-flex items-center justify-center gap-2 bg-white hover:bg-gray-50 text-gray-800 font-semibold py-4 px-8 rounded-full border border-gray-200 shadow-sm transition-all cursor-pointer"
-                id="hero-services-cta"
               >
                 <span>Explore Services</span>
-              </button>
-
-              <button
-                onClick={onContactClick}
-                className="inline-flex items-center justify-center gap-2 bg-transparent hover:bg-black/5 text-gray-700 font-medium py-4 px-6 rounded-full transition-all cursor-pointer"
-                id="hero-contact-cta"
-              >
-                <span>Request Consultation</span>
               </button>
 
               <a
@@ -69,112 +142,95 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold py-4 px-6 rounded-full shadow-md transition-all cursor-pointer"
-                id="hero-whatsapp-cta"
-                aria-label="Chat with Dr.Heez on WhatsApp"
                 title="Chat with Dr.Heez on WhatsApp"
               >
                 <MessageSquare className="h-4.5 w-4.5" />
                 <span>WhatsApp</span>
               </a>
             </div>
-
-            {/* Static Stats / Badges */}
-            <div className="pt-6 border-t border-gray-200/60 grid grid-cols-3 gap-4 max-w-lg mx-auto lg:mx-0">
-              <div>
-                <span className="block font-display font-bold text-2xl sm:text-3xl text-brand-green">10k+</span>
-                <span className="block text-xs font-medium text-gray-500 uppercase tracking-wider">Happy Clients</span>
-              </div>
-              <div>
-                <span className="block font-display font-bold text-2xl sm:text-3xl text-brand-green">8+</span>
-                <span className="block text-xs font-medium text-gray-500 uppercase tracking-wider">Business Units</span>
-              </div>
-              <div>
-                <span className="block font-display font-bold text-2xl sm:text-3xl text-brand-green">100%</span>
-                <span className="block text-xs font-medium text-gray-500 uppercase tracking-wider">Quality Verified</span>
-              </div>
+            
+            {/* Slider Dots Indicator */}
+            <div className="flex items-center justify-center lg:justify-start gap-2 pt-4">
+              {slides.map((_, idx) => (
+                <button 
+                  key={idx}
+                  onClick={() => setCurrentSlide(idx)}
+                  className={`h-2 rounded-full transition-all cursor-pointer ${
+                    currentSlide === idx ? 'w-8 bg-brand-green' : 'w-2 bg-gray-300 hover:bg-gray-400'
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
             </div>
           </div>
 
-          {/* Graphic / Promotional Render Column - Right side */}
-          <div className="lg:col-span-5 relative mt-8 lg:mt-0">
-            <div className="relative mx-auto max-w-md lg:max-w-none">
+          {/* Dynamic Slider - Right side */}
+          <div className="lg:col-span-6 relative mt-8 lg:mt-0">
+            <div className="relative mx-auto max-w-md lg:max-w-xl">
               
-              {/* Backglow panel */}
               <div className="absolute inset-0 bg-gradient-to-tr from-brand-green to-brand-gold opacity-10 rounded-3xl blur-2xl transform rotate-3 scale-95" />
               
-              {/* Main promotional card */}
-              <div className="relative border border-gray-100 bg-white p-6 sm:p-8 rounded-2xl shadow-xl">
-                {/* Header inside promo */}
-                <div className="flex justify-between items-start mb-6">
-                  <div className="flex items-center gap-2">
-                    <div className="p-1.5 bg-brand-green text-brand-gold rounded-md">
-                      <Activity className="h-5 w-5" />
-                    </div>
-                    <span className="text-xs font-bold text-brand-dark uppercase tracking-wider">Flagship Supplement</span>
-                  </div>
-                  <span className="bg-brand-gold/15 text-brand-green text-[11px] font-extrabold px-2.5 py-0.5 rounded-full uppercase">
-                    Best Seller
-                  </span>
-                </div>
+              <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl border border-gray-100 p-2">
+                <div 
+                  className="flex transition-transform duration-700 ease-in-out h-full"
+                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                >
+                  {slides.map((slide, idx) => {
+                    const IconComponent = slide.icon;
+                    return (
+                      <div key={idx} className="w-full flex-shrink-0 p-4 sm:p-6">
+                        <div className="flex justify-between items-start mb-6">
+                          <div className="flex items-center gap-2">
+                            <div className="p-1.5 bg-brand-green text-brand-gold rounded-md">
+                              <IconComponent className="h-5 w-5" />
+                            </div>
+                            <span className="text-xs font-bold text-brand-dark uppercase tracking-wider">{slide.tagline}</span>
+                          </div>
+                        </div>
 
-                {/* Simulated product photo */}
-                <div className="relative overflow-hidden rounded-xl bg-gray-50 h-[220px] mb-6 border border-gray-100/50 group">
-                  <img
-                    src="/images/mega4-stemcells.png"
-                    alt="Mega 4 Stemcells Product"
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent flex items-end p-4">
-                    <div>
-                      <h3 className="text-white font-display font-bold text-lg leading-tight">Mega 4 Stemcells</h3>
-                      <p className="text-brand-gold text-xs font-semibold">Natural cellular regeneration supplement</p>
-                    </div>
-                  </div>
-                </div>
+                        <div className="relative overflow-hidden rounded-xl bg-gray-50 h-[260px] mb-6 border border-gray-100/50 group">
+                          <img
+                            src={slide.image}
+                            alt={slide.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            referrerPolicy="no-referrer"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end p-5">
+                            <div>
+                              <h3 className="text-white font-display font-bold text-xl leading-tight mb-1">{slide.title}</h3>
+                              <p className="text-gray-200 text-sm">{slide.description}</p>
+                            </div>
+                          </div>
+                        </div>
 
-                {/* Wellness points preview */}
-                <div className="space-y-2.5 mb-6">
-                  <div className="flex items-start gap-2 text-xs text-gray-600">
-                    <span className="text-brand-green h-4 w-4 font-bold flex items-center justify-center">✓</span>
-                    <span>Supports natural body detoxification and defense</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-xs text-gray-600">
-                    <span className="text-brand-green h-4 w-4 font-bold flex items-center justify-center">✓</span>
-                    <span>Rich in antioxidants for supreme energy & recovery</span>
-                  </div>
+                        <div className="flex items-center justify-between pt-2">
+                          <button
+                            onClick={slide.action}
+                            className="w-full bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-bold text-sm py-3.5 px-4 rounded-xl cursor-pointer flex items-center justify-center gap-2 transition-all shadow-md"
+                          >
+                            <span>{slide.cta}</span>
+                            <ArrowRight className="h-4 w-4" />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-
-                {/* Interactive Action */}
-                <div className="flex items-center justify-between pt-4 border-t border-gray-100">
-                  <div>
-                    <span className="text-gray-400 text-[10px] block uppercase font-bold tracking-wider">Pricing standard</span>
-                    <span className="font-display font-extrabold text-xl text-brand-green">₦45,000 <span className="text-gray-400 text-sm font-normal">/ $60</span></span>
-                  </div>
-                  <button
-                    onClick={onShopClick}
-                    className="bg-brand-gold hover:bg-brand-gold-hover text-brand-green font-bold text-xs py-2.5 px-4 rounded-lg cursor-pointer flex items-center gap-1 transition-all"
-                  >
-                    <span>Instant Order</span>
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </button>
-                </div>
-
-                {/* Scientific Disclaimer */}
-                <p className="text-[10px] text-gray-400 italic block mt-3.5 leading-tight text-center">
-                  *This supplement is not intended to diagnose, treat, cure, or prevent any diseases.
-                </p>
+                
+                {/* Navigation Controls */}
+                <button 
+                  onClick={prevSlide}
+                  className="absolute top-1/2 left-4 -translate-y-1/2 p-2 bg-white/90 hover:bg-white text-brand-dark rounded-full shadow-lg border border-gray-100 cursor-pointer transition-all z-10"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button 
+                  onClick={nextSlide}
+                  className="absolute top-1/2 right-4 -translate-y-1/2 p-2 bg-white/90 hover:bg-white text-brand-dark rounded-full shadow-lg border border-gray-100 cursor-pointer transition-all z-10"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
               </div>
-
-              {/* Float Badge 1 */}
-              <div className="absolute -top-4 -left-4 bg-white border border-gray-100 px-4 py-2 rounded-xl shadow-md hidden sm:flex items-center gap-2 animate-bounce">
-                <BrainCircuit className="h-5 w-5 text-brand-green" />
-                <div>
-                  <span className="text-[10px] text-gray-400 block font-semibold">Our consultancy expertise</span>
-                  <span className="text-xs font-bold text-brand-dark block">Deep Strategic Planning</span>
-                </div>
-              </div>
-
             </div>
           </div>
 
