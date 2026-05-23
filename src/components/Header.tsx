@@ -34,7 +34,7 @@ export default function Header({ activeTab, setActiveTab }: HeaderProps) {
               alt="Dr.Heez Global Ventures Logo" 
               className="h-12 md:h-14 w-auto object-contain transition-transform group-hover:scale-105"
             />
-            <span className="font-display font-black text-xl sm:text-2xl text-brand-green tracking-tight leading-none">
+            <span className="font-display font-black text-2xl sm:text-3xl text-brand-green tracking-tight leading-none">
               DrHeez
             </span>
           </div>

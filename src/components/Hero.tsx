@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, Activity, BrainCircuit, Factory, Smartphone, TrendingUp, HardHat, Wheat, ShoppingBag, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, Activity, BrainCircuit, Factory, Smartphone, TrendingUp, HardHat, Wheat, ShoppingBag } from 'lucide-react';
 
 interface HeroProps {
   onShopClick: () => void;
@@ -93,9 +93,6 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
     return () => clearInterval(timer);
   }, [slides.length]);
 
-  const nextSlide = () => setCurrentSlide((prev) => (prev + 1) % slides.length);
-  const prevSlide = () => setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
-
   const activeSlide = slides[currentSlide];
   const ActiveIcon = activeSlide.icon;
 
@@ -168,20 +165,6 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
           </div>
         </div>
 
-        <button
-          onClick={prevSlide}
-          className="absolute top-1/2 left-4 sm:left-6 -translate-y-1/2 p-3 bg-white/12 hover:bg-white/20 text-white rounded-full border border-white/15 cursor-pointer transition-all z-20"
-          aria-label="Previous slide"
-        >
-          <ChevronLeft className="h-5 w-5" />
-        </button>
-        <button
-          onClick={nextSlide}
-          className="absolute top-1/2 right-4 sm:right-6 -translate-y-1/2 p-3 bg-white/12 hover:bg-white/20 text-white rounded-full border border-white/15 cursor-pointer transition-all z-20"
-          aria-label="Next slide"
-        >
-          <ChevronRight className="h-5 w-5" />
-        </button>
       </div>
     </div>
   );
