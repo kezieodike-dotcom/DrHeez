@@ -25,7 +25,7 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
       title: "Oil & Gas Solutions",
       description: "Reliable support, logistics, and supply chain management for the oil and gas industry, ensuring operational efficiency.",
       tagline: "Industry Support",
-      image: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=605",
+      image: "/images/oil-gas.jpg",
       icon: Factory,
       cta: "Explore Solutions",
       action: onServicesClick
