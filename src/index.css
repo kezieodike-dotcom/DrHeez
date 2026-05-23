@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", sans-serif;
+  --font-display: "Poppins", sans-serif;
+  
+  --color-brand-green: #0E5A3C;
+  --color-brand-green-hover: #0a432c;
+  --color-brand-gold: #D4A017;
+  --color-brand-gold-hover: #b88a10;
+  --color-brand-dark: #222222;
+  --color-brand-light: #F9F9F9;
+}
+
+/* ─── Smooth scroll behavior ─── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ─── Custom glassmorphism classes ─── */
+.custom-glass {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(8px);
+}
+
+/* ─── Hero and brand gradients ─── */
+.hero-gradient {
+  background: linear-gradient(135deg, rgba(14, 90, 60, 0.05) 0%, rgba(212, 160, 23, 0.05) 100%);
+}
+
+.brand-green-gradient {
+  background: linear-gradient(135deg, #0E5A3C 0%, #083b27 100%);
+}
+
+.brand-gold-gradient {
+  background: linear-gradient(135deg, #D4A017 0%, #ab800e 100%);
+}
+
+/* ─── Page transition animation ─── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ─── Floating WhatsApp button pulse ring ─── */
+@keyframes whatsappPulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+  }
+  70% {
+    box-shadow: 0 0 0 14px rgba(37, 211, 102, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+  }
+}
+
+.whatsapp-pulse {
+  animation: whatsappPulse 2s infinite;
+}
+
+/* ─── Subtle shimmer for premium badges ─── */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-badge {
+  background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.15) 50%, transparent 100%);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ─── Smooth scale hover for product cards ─── */
+@keyframes cardEntrance {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.animate-card-enter {
+  animation: cardEntrance 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+/* ─── Scrollbar styling (Webkit) ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c4c4c4;
+  border-radius: 8px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #0E5A3C;
+}
+
+/* ─── Selection highlight ─── */
+::selection {
+  background: rgba(14, 90, 60, 0.15);
+  color: #0E5A3C;
+}

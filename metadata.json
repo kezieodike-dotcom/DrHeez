@@ -1,0 +1,6 @@
+{
+  "name": "Dr.Heez Global Ventures",
+  "description": "Multi-sector business brand specialized in wellness products, strategic consultancy, financial engineering, agro-allied solutions, construction support, and general commerce.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
