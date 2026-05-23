@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { ArrowRight, ShieldCheck, Activity, BrainCircuit, MessageSquare, Factory, Smartphone, TrendingUp, HardHat, Wheat, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ArrowRight, ShieldCheck, Activity, BrainCircuit, Factory, Smartphone, TrendingUp, HardHat, Wheat, ShoppingCart, ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface HeroProps {
   onShopClick: () => void;
@@ -8,7 +8,7 @@ interface HeroProps {
 }
 
 export default function Hero({ onShopClick, onServicesClick, onContactClick }: HeroProps) {
-  const whatsAppHref = 'https://wa.me/2348140731811';
+
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const slides = [
@@ -137,16 +137,7 @@ export default function Hero({ onShopClick, onServicesClick, onContactClick }: H
                 <span>Explore Services</span>
               </button>
 
-              <a
-                href={whatsAppHref}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#128C7E] text-white font-semibold py-4 px-6 rounded-full shadow-md transition-all cursor-pointer"
-                title="Chat with Dr.Heez on WhatsApp"
-              >
-                <MessageSquare className="h-4.5 w-4.5" />
-                <span>WhatsApp</span>
-              </a>
+
             </div>
             
             {/* Slider Dots Indicator */}
